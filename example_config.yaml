@@ -1,0 +1,8 @@
+default_repository: github
+# will be stored at cache_dir/repository/file
+cache_dir: $HOME/.cache/fetch-ignore/
+repositories:
+  - name: github
+    url: "https://raw.githubusercontent.com/github/gitignore/master/{{.Lang}}.gitignore"
+cache:
+  duration: 30 days
