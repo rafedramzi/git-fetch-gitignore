@@ -1,4 +1,6 @@
 - [ ] Rework the command cli, use cobra or go-tea
 - [ ] Rework the flow, instead of downloading the file, we also provide the mechanism to clone the git repository
+- [ ] Allow url fetch
 - [ ] Configuration mechanism
+- [ ] Composable fetch command, like node+react or space delimited
 
