@@ -5,3 +5,5 @@ func FetchGitRepository() {
 	// Check cloned git repo date, if out of date yes throw error
 	// return the string pointer
 }
+
+func UpdateGitRepository() {}
