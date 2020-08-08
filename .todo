@@ -3,4 +3,5 @@
 - [ ] Allow url fetch
 - [ ] Configuration mechanism
 - [ ] Composable fetch command, like node+react or space delimited
+- [ ] Rename the project t get-ignore
 
