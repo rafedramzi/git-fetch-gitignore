@@ -1,0 +1,12 @@
+#defaultRepository: "" # OPT, will prompt if not provided
+defaultRepository: "gh" # OPT, will prompt if not provided
+#cacheDir: "" # OPT, default to ~/.cache/fetch-ignore
+expireDuration: "720h"
+sources:
+  - kind: git
+    name: gh
+    source: ssh://git@github.com:github/gitignore.git # FOR SSH
+    #source: https://github.com/github/gitignore.git # FOR HTTPS
+  - kind: url
+    name: gh-ignore-url
+    source: https://raw.githubusercontent.com/github/gitignore/master/Global/%s.gitignore
