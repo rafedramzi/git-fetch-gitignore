@@ -1,11 +1,15 @@
-package repository
+package source
 
-import "github.com/rafedramzi/fetch-gitignore/internal"
+// func init() {
 
-func FetchFileRepository(src internal.Source) {
-	// Do the templating there
-	// Fetch
-	// return the string pointer
-}
+// }
 
-func UpdateFileRepository() {}
+// func FetchFileRepository(src internal.Source) string {
+// 	// Do the templating there
+// 	// Fetch
+// 	// return the string pointer
+// }
+
+// func UpdateFileRepository(src internal.Source) string {
+
+// }
