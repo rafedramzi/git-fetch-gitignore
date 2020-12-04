@@ -1,6 +1,7 @@
 package source
 
 import (
+	"flag"
 	"io/ioutil"
 	"os"
 	"path"
@@ -13,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var debug bool
+var debug = flag.Bool("debug", false, "enable debug mode")
 
 func TestGetFileGitRepository(t *testing.T) {
 	repoName := "dummy"
@@ -21,7 +22,7 @@ func TestGetFileGitRepository(t *testing.T) {
 	repoDir := utilsCreateDummyGitRepository(t, workspace, repoName)
 	source := NewGitSource(repoName, "file://"+workspace, utilsConfig(workspace))
 	dummyData := "hello \n hello"
-	if !debug {
+	if !*debug {
 		defer os.RemoveAll(repoDir)
 	}
 
@@ -66,7 +67,6 @@ func TestGetFileGitRepository(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			// Setup
 			fileName := tc.fileName
 			if !strings.HasSuffix(fileName, ".gitignore") {
 				fileName += ".gitignore"
@@ -75,7 +75,7 @@ func TestGetFileGitRepository(t *testing.T) {
 			if err != nil {
 				t.Fatal(err)
 			}
-			// Test
+
 			ans, err := source.GetFile(tc.fileName)
 			assert.NoError(t, err)
 			assert.Equal(t, dummyData, string(ans))
@@ -89,7 +89,7 @@ func TestIntegrationFetchGitRepsitory(t *testing.T) {
 	repositories := utilsRepositoriesData()
 
 	cacheDir := path.Join(os.TempDir(), string(os.PathSeparator), "fetchignore")
-	if !debug {
+	if !*debug {
 		defer os.RemoveAll(cacheDir)
 	}
 	conf := utilsConfig(cacheDir)

@@ -6,7 +6,6 @@ import (
 	"os"
 	"path"
 	"strings"
-	"time"
 
 	"github.com/go-git/go-git/v5"
 	"github.com/rafedramzi/fetch-gitignore/internal/config"
@@ -22,7 +21,6 @@ type SourceGitRepository struct {
 
 // NewGitSource create new cache dir
 func NewGitSource(name string, url string, conf *config.Config) *SourceGitRepository {
-
 	return &SourceGitRepository{
 		name:     name,
 		url:      url,
@@ -73,14 +71,6 @@ func (s *SourceGitRepository) Sync(force bool) error {
 	worktree.Pull(pullOptions)
 	log.Infof("Source %s is up to date", s.name)
 	return nil
-}
-
-// HasExpired determinte wheter time is expired or not
-func HasExpired(t time.Time, expDuration time.Duration) bool {
-	if time.Since(t) < expDuration {
-		return false
-	}
-	return true
 }
 
 // GetFile get file from git repository that stored in local

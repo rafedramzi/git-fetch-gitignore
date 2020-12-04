@@ -3,32 +3,14 @@ package source
 import (
 	"io"
 	"strings"
+	"time"
 )
 
 type Source interface {
 	// Will clone or refresh the source
-	Sync() error
+	// Sync(force bool) error
 	// Will getch the stile
-	Get(string) (io.Reader, error)
-}
-
-// Fetch get file + refresh the repository if needed
-func Fetch(source Source, files []string) (io.Reader, error) {
-	err := source.Sync()
-	if err != nil {
-		return nil, err
-	}
-
-	for _, file := range files {
-		_, err := source.Get(file)
-		// TODO: Accumulate Error
-		if err != nil {
-			return nil, err
-		}
-	}
-
-	// TODO:
-	return nil, nil
+	GetFile(string) (io.Reader, error)
 }
 
 // RemoveSpecialCharacter remove ,, /, \ from string
@@ -39,4 +21,12 @@ func RemoveSpecialCharacter(input string) string {
 		`/`, `-`,
 		`\`, `-`,
 	).Replace(input)
+}
+
+// HasExpired determinte wheter time is expired or not
+func HasExpired(t time.Time, expDuration time.Duration) bool {
+	if time.Since(t) < expDuration {
+		return false
+	}
+	return true
 }
